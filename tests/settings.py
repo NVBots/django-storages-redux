@@ -28,3 +28,18 @@ DEFAULT_FILE_STORAGE = 'backends.s3boto.S3BotoStorage'
 AWS_IS_GZIPPED = True
 SECRET_KEY = 'hailthesunshine'
 
+DEFAULT_LIBCLOUD_PROVIDER = 'libcloud_local'
+
+LIBCLOUD_DIR = os.path.join(MEDIA_ROOT, 'libcloud')
+if not os.path.exists(LIBCLOUD_DIR):
+    os.makedirs(LIBCLOUD_DIR)
+
+LIBCLOUD_PROVIDERS = {
+    'libcloud_local': {
+        'type': 'libcloud.storage.types.Provider.LOCAL',
+        'user': LIBCLOUD_DIR,
+        'key': LIBCLOUD_DIR,
+        'path': LIBCLOUD_DIR,
+        'bucket': 'local'
+    },
+}
