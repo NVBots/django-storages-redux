@@ -37,22 +37,13 @@ class LibCloudStorage(Storage):
                 if module_path != 'libcloud.storage.types.Provider':
                     raise ValueError("Invalid module path")
                 provider_type = getattr(Provider, tag)
-            
+
             Driver = get_driver(provider_type)
-            if tag == 'LOCAL':
-                if not 'path' in self.provider:
-                    raise ImproperlyConfigured(
-                        'this provider requires path setting')
-                self.driver=Driver(
-                    self.provider['path'],
-                    **extra_kwargs
-                )
-            else:
-                self.driver = Driver(
-                    self.provider['user'],
-                    self.provider['key'],
-                    **extra_kwargs
-                )
+            self.driver = Driver(
+                self.provider['user'],
+                self.provider['key'],
+                **extra_kwargs
+            )
         except Exception as e:
             raise ImproperlyConfigured(
                 "Unable to create libcloud driver type %s: %s" % \

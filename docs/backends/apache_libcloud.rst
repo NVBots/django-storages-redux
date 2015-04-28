@@ -106,12 +106,6 @@ your storage provider:
 
         **key**: Your Rackspace access key
 
-    **LOCAL**:
-     
-        **type**: ``libcloud.storages.types.Provider.LOCAL``,
-    
-        **path**: Path to directory on local filesystem
-
 You can specify any bucket name you want; however, the bucket must exist before you
 can start using it. If you need to create the bucket, you can use the storage API.
 For example, to create ``bucket-1`` from our previous example::
